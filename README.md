@@ -41,7 +41,7 @@ Project Description
 - Player catches 2 pokes and then battle against 2 random computer choices.
 
 Sketch of Final Product
-
+- https://limbach17.github.io/goHAMM/assets/images/concept.jpg
 
 APIs to be Used
 - discord api @ https://discordapp.com/developers/docs/resources/webhook <br>
