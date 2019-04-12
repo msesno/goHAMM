@@ -1,3 +1,4 @@
+
 var settings = {
     "async": true,
     "crossDomain": true,
@@ -56,4 +57,3 @@ function GrabCharInfo(statsArr) {
  
  }
 }
-
