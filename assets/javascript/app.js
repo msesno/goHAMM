@@ -50,6 +50,15 @@ function GrabCharInfo(statsArr) {
   Display(charLvl);
   
   function Display(item) {
+    var tr = $("<tr>");
+    var td1 = $("<td>");
+    var td2 = $("<td>");
+    var td3 = $("<td>");
+    var td4 = $("<td>");
+    var td5 = $("<td>");
+    var td7 = $("<td>");
+
+    td1.text();
     var tempDiv = $("<div>");
     tempDiv.text(item);
     $(".row").append(tempDiv);
