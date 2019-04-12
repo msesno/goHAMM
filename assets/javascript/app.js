@@ -29,4 +29,34 @@ $(document).ready(function (){
     console.log(response);
   })
 
-});
+
+function GrabCharInfo(statsArr) {
+  var charName = statsArr[0];
+  var charIV = statsArr[2];
+  var charCP = statsArr[8];
+  var charLvl = statsArr[5];
+  
+  var character = {
+    name: charName,
+    IV: charIV,
+    CP: charCP,
+    Lvl: charLvl
+  }
+
+  AddCharRow();
+
+  function AddCharRow() {
+    var tr = $("<tr>");
+    Display(charName);
+    Display(charIV);
+    Display(charCP);
+    Display(charLvl);
+    function Display(item) {
+      var td = $("<td>");
+      td.text(item);
+      tr.append(td);
+      $("tbody").append(tr);
+    }
+  }
+}
+
