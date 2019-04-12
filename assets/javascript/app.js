@@ -21,5 +21,39 @@ var settings = {
     for(var i=0;i<3;i++) 
     {
         console.log(tempChar[i].name);
-    }
-  });
+        
+         var statsArr =  tempChar[0].name.split(" ");
+      
+         console.log("Stats Array: " + statsArr);
+        for(var i=0;i<statsArr.length;i++) {
+          console.log("i: " + i + "    " + statsArr[i]);
+
+        }
+
+        GrabCharInfo(statsArr);
+
+       
+
+    } 
+  })
+
+function GrabCharInfo(statsArr) {
+  var charName = statsArr[0];
+  var charIV = statsArr[2];
+  var charCP = statsArr[8];
+  var charLvl = statsArr[5];
+
+  Display(charName);
+  Display(charIV);
+  Display(charCP);
+  Display(charLvl);
+  
+  function Display(item) {
+    var tempDiv = $("<div>");
+    tempDiv.text(item);
+    $(".row").append(tempDiv);
+ 
+ 
+ }
+}
+
