@@ -18,6 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
+    
     <style>
         h1 {
             font-family: 'Slackey';
@@ -37,6 +38,9 @@
             font-family: 'Mandali';
             font-size: 16px;
         }
+        .bold {
+            font-weight: bold;
+        }
         p {
             font-family: 'Mandali'
         }
@@ -53,9 +57,9 @@
         <!-- Jumbotron holds the title section. -->
         <div class='jumbotron'>
             <div class='container'>
-                <h1 class="text-center"><i class="fas fa-id-card"></i> Philly Pokedex</h1>
+                <h1 class="text-center"><img src="assets/images/logo.svg" alt="logo"> Philly Pokedex</h1>
                 <hr>
-                <p class="text-center"><small><i class="fa fa-envelope-open"></i> find existing pokemons in the table below</small>
+                <p class="text-center"><small><i class="fas fa-layer-group"></i> list existing pokemons and find in search below</small>
                 </p>
             </div>
         </div>
@@ -67,32 +71,31 @@
                 <!-- First card: Holds the Word to Guess (blanks and guessed word). -->
                 <div class="card card-default">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-user-plus"></i><strong> Search Pokes</strong></h3>
+                        <h3 class="card-title"><i class="fas fa-search-location"></i><strong> Search Pokes</strong></h3>
                     </div>
 
                     <div class="card-body">
 
                         <form>
                             <div class="form-group">
-                                <label for="formGroupExampleInput"><h4><i class="fas fa-address-card"></i> <strong>Search name:</strong></h4></label>
-                                <input type="text" class="form-control" id="person" placeholder="Person's name...">
+                                <label for="formGroupExampleInput"><h4> <strong>find by name:</strong></h4></label>
+                                <input type="text" class="form-control" id="person" placeholder="pokemon name...">
                             </div>
 
                             <div class="form-group">
-                                <label for="formGroupExampleInput2"><i class="fas fa-address-book"></i>
-                                    <strong>Search iv: </strong></label>
-                                <input type="text" class="form-control" id="title" placeholder="Job Title...">
+                                <label for="formGroupExampleInput2"><h4>
+                                    <strong>find by iv: </strong></h4></label>
+                                <input type="text" class="form-control" id="title" placeholder="a whole number...">
                             </div>
 
                             <div class="form-group">
-                                <label for="formGroupExampleInput3"><i class="fas fa-calendar-check"></i> <strong>
-                                        Search cp: </strong></label>
-                                <input type="text" class="form-control" id="startDate" placeholder="mm/dd/yyyy...">
+                                <label for="formGroupExampleInput3"><h4> <strong>
+                                        find by cp: </strong></h4></label>
+                                <input type="text" class="form-control" id="startDate" placeholder="a whole number...">
                             </div>
 
                             <br>
-                            <button type="submit" class="btn btn-outline-dark" id="submit"><i
-                                    class="fa fa-user-circle"></i> SUBMIT</button>
+                            <button type="submit" class="btn btn-outline-dark" id="submit"><i class="fas fa-search"></i> SUBMIT</button>
 
                         </form>
                         <br>
@@ -104,7 +107,7 @@
                 <!-- Results -->
                 <div class="card card-default">
                     <div class="card-header">
-                        <h3 class="card-title"><strong><i class="fas fa-users"></i> Current Spawns</strong></h3>
+                        <h3 class="card-title"><strong><i class="fas fa-map-marker-alt"></i> Current Spawns</strong></h3>
                     </div>
 
                     <div class="card-body">
@@ -118,12 +121,12 @@
 
                                 <thead>
                                     <tr style="width: 100%;">
-                                        <th scope="col">IMAGE</th>
-                                        <th scope="col">NAME</th>
-                                        <th scope="col">IV</th>
-                                        <th scope="col">CP</th>
-                                        <th scope="col">Level</th>
-                                        <th scope="col">Link</th>
+                                        <th scope="col"><h4 class="bold">IMAGE</h4></th>
+                                        <th scope="col"><h4 class="bold">NAME</h4></th>
+                                        <th scope="col"><h4 class="bold">IV</h4></th>
+                                        <th scope="col"><h4 class="bold">CP</h4></th>
+                                        <th scope="col"><h4 class="bold">Level</h4></th>
+                                        <th scope="col"><h4 class="bold">Link</h4></th>
                                     </tr>
                                 </thead>
 
