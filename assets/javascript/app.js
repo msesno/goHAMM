@@ -44,12 +44,12 @@ function GrabCharInfo(statsArr) {
   var charCP = statsArr[8];
   var charLvl = statsArr[5];
 
-  Display(charName);
-  Display(charIV);
-  Display(charCP);
-  Display(charLvl);
+  DisplayStat(charName);
+  DisplayStat(charIV);
+  DisplayStat(charCP);
+  DisplayStat(charLvl);
   
-  function Display(item) {
+  function DisplayStat(item) {
     var tr = $("<tr>");
     var td1 = $("<td>");
     var td2 = $("<td>");
