@@ -1,20 +1,22 @@
 // GLOBAL VARIABLES
 var res;
 var thumb;
+var character={};
 $(document).ready(function () {
 
   var config = {
-    apiKey: "AIzaSyCI3XGNh4Nvo8rXYDWnVc7KYbNdwxTRbYY",
-    authDomain: "phila-pokedex.firebaseapp.com",
-    databaseURL: "https://phila-pokedex.firebaseio.com",
-    projectId: "phila-pokedex",
-    storageBucket: "phila-pokedex.appspot.com",
-    messagingSenderId: "678564572304"
+    apiKey: "AIzaSyAzJQYofNF8SOAjr-i9WiUnc_eC8sJU1Nc",
+    authDomain: "pokedump-f9a36.firebaseapp.com",
+    databaseURL: "https://pokedump-f9a36.firebaseio.com",
+    projectId: "pokedump-f9a36",
+    storageBucket: "pokedump-f9a36.appspot.com",
+    messagingSenderId: "673903030426"
   };
 
   firebase.initializeApp(config);
 
   var database = firebase.database();
+
 
   var settings = {
     "async": true,
@@ -38,6 +40,8 @@ $(document).ready(function () {
       thumb = GrabThumbNail(res[i]);
       GrabStats(res[i]);
       GrabCharInfo(statsArr);
+      database.ref().push(character);
+
     }
     
   })
@@ -53,7 +57,7 @@ $(document).ready(function () {
      
 
 
-    var character = {
+    character = {
       name: charName,
       IV: charIV,
       CP: charCP,
