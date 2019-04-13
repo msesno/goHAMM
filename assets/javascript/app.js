@@ -1,6 +1,6 @@
 // GLOBAL VARIABLES
-
-
+var res;
+var thumb;
 $(document).ready(function () {
 
   var config = {
@@ -30,9 +30,13 @@ $(document).ready(function () {
 
   $.ajax(settings).then(function (response) {
     console.log(response);
+    res = response;
+    // GRAB IMAGE
     
-     var statsArr = GrabStats(response);
-     console.log(statsArr);
+    console.log("Thumb: " + JSON.stringify(thumb));
+
+    var statsArr = GrabStats(response);
+    console.log(statsArr);
     GrabCharInfo(statsArr);
   })
 
@@ -43,6 +47,9 @@ $(document).ready(function () {
     var charIV = statsArr[2];
     var charCP = statsArr[8];
     var charLvl = statsArr[5];
+
+     thumb = GrabThumbNail(res);
+
 
     var character = {
       name: charName,
@@ -56,6 +63,12 @@ $(document).ready(function () {
     function AddCharRow() {
       console.log("AddCharRow:");
       var tr = $("<tr>");
+      
+      var td = $("<td>");
+      td.html(thumb);
+      tr.append(td);
+      
+
       DisplayStat(charName);
       DisplayStat(charIV);
       DisplayStat(charCP);
@@ -74,11 +87,18 @@ $(document).ready(function () {
 
 
 
+function GrabThumbNail(response) {
+  var imgSrc = response[0].embeds[0].thumbnail.url;
+  var img = $("<img>");
+  img.attr("src", imgSrc);
+  return img;
+}
+
 function GrabStats(response) {
   statsArr = [];
   stats = response[0].embeds[0].fields[0].name;
   console.log(stats);
-  statsArr= stats.split(" ");
+  statsArr = stats.split(" ");
   console.log("Stats Array" + statsArr);
   return statsArr;
 }
