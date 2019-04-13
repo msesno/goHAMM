@@ -1,3 +1,6 @@
+// GLOBAL VARIABLES
+
+
 $(document).ready(function () {
 
   var config = {
@@ -27,6 +30,10 @@ $(document).ready(function () {
 
   $.ajax(settings).then(function (response) {
     console.log(response);
+    
+     var statsArr = GrabStats(response);
+     console.log(statsArr);
+    GrabCharInfo(statsArr);
   })
 
 
@@ -47,12 +54,13 @@ $(document).ready(function () {
     AddCharRow();
 
     function AddCharRow() {
+      console.log("AddCharRow:");
       var tr = $("<tr>");
-      Display(charName);
-      Display(charIV);
-      Display(charCP);
-      Display(charLvl);
-      function Display(item) {
+      DisplayStat(charName);
+      DisplayStat(charIV);
+      DisplayStat(charCP);
+      DisplayStat(charLvl);
+      function DisplayStat(item) {
         var td = $("<td>");
         td.text(item);
         tr.append(td);
@@ -65,4 +73,13 @@ $(document).ready(function () {
 
 
 
+
+function GrabStats(response) {
+  statsArr = [];
+  stats = response[0].embeds[0].fields[0].name;
+  console.log(stats);
+  statsArr= stats.split(" ");
+  console.log("Stats Array" + statsArr);
+  return statsArr;
+}
 
