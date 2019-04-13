@@ -31,13 +31,15 @@ $(document).ready(function () {
   $.ajax(settings).then(function (response) {
     console.log(response);
     res = response;
-    // GRAB IMAGE
+   
     
-    console.log("Thumb: " + JSON.stringify(thumb));
-
-    var statsArr = GrabStats(response);
-    console.log(statsArr);
-    GrabCharInfo(statsArr);
+    
+    for (var i=0;i<5;i++) {
+      thumb = GrabThumbNail(res[i]);
+      GrabStats(res[i]);
+      GrabCharInfo(statsArr);
+    }
+    
   })
 
 
@@ -48,7 +50,7 @@ $(document).ready(function () {
     var charCP = statsArr[8];
     var charLvl = statsArr[5];
 
-     thumb = GrabThumbNail(res);
+     
 
 
     var character = {
@@ -64,15 +66,19 @@ $(document).ready(function () {
       console.log("AddCharRow:");
       var tr = $("<tr>");
       
-      var td = $("<td>");
-      td.html(thumb);
-      tr.append(td);
+      AddImage();
       
 
       DisplayStat(charName);
       DisplayStat(charIV);
       DisplayStat(charCP);
       DisplayStat(charLvl);
+      function AddImage() {
+        var td = $("<td>");
+        td.html(thumb);
+        tr.append(td);
+      }
+
       function DisplayStat(item) {
         var td = $("<td>");
         td.text(item);
@@ -87,16 +93,17 @@ $(document).ready(function () {
 
 
 
-function GrabThumbNail(response) {
-  var imgSrc = response[0].embeds[0].thumbnail.url;
+function GrabThumbNail(item) {
+  console.log("Item: " + item);
+  var imgSrc = item.embeds[0].thumbnail.url;
   var img = $("<img>");
   img.attr("src", imgSrc);
   return img;
 }
 
-function GrabStats(response) {
+function GrabStats(item) {
   statsArr = [];
-  stats = response[0].embeds[0].fields[0].name;
+  stats = item.embeds[0].fields[0].name;
   console.log(stats);
   statsArr = stats.split(" ");
   console.log("Stats Array" + statsArr);
