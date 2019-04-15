@@ -3,14 +3,13 @@
 
 // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyCI3XGNh4Nvo8rXYDWnVc7KYbNdwxTRbYY",
-  authDomain: "phila-pokedex.firebaseapp.com",
-  databaseURL: "https://phila-pokedex.firebaseio.com",
-  projectId: "phila-pokedex",
-  storageBucket: "phila-pokedex.appspot.com",
-  messagingSenderId: "678564572304"
+  apiKey: "AIzaSyCGP6jSDucf4n-fffBZ22J49mn4OA5bcNc",
+  authDomain: "philly-dex.firebaseapp.com",
+  databaseURL: "https://philly-dex.firebaseio.com",
+  projectId: "philly-dex",
+  storageBucket: "philly-dex.appspot.com",
+  messagingSenderId: "118073688"
 };
-
 firebase.initializeApp(config);
 
 
