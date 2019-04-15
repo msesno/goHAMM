@@ -1,7 +1,7 @@
 # goHAMM
 https://github.com/Limbach17/goHAMM
 
-- An app that displays active pokemons in philly in row format, and removed after despawn.
+- An app that displays active pokemons in philly in row or map format, and removed after despawn.
 - Player catches 2 pokes and then battle against 2 random computer choices.
 
 Game: 
