@@ -3,12 +3,12 @@
 
 // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyAzJQYofNF8SOAjr-i9WiUnc_eC8sJU1Nc",
-  authDomain: "pokedump-f9a36.firebaseapp.com",
-  databaseURL: "https://pokedump-f9a36.firebaseio.com",
-  projectId: "pokedump-f9a36",
-  storageBucket: "pokedump-f9a36.appspot.com",
-  messagingSenderId: "673903030426"
+  apiKey: "AIzaSyCI3XGNh4Nvo8rXYDWnVc7KYbNdwxTRbYY",
+  authDomain: "phila-pokedex.firebaseapp.com",
+  databaseURL: "https://phila-pokedex.firebaseio.com",
+  projectId: "phila-pokedex",
+  storageBucket: "phila-pokedex.appspot.com",
+  messagingSenderId: "678564572304"
 };
 firebase.initializeApp(config);
 
