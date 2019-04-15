@@ -36,7 +36,7 @@ $(document).ready(function () {
    
     
     
-    for (var i=0;i<5;i++) {
+    for (var i=0;i<50;i++) {
       thumb = GrabThumbNail(res[i]);
       GrabStats(res[i]);
       GrabCharInfo(statsArr);
