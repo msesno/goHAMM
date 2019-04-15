@@ -17,6 +17,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.js"></script>
+
 
     
     <style>
@@ -43,6 +45,17 @@
         }
         p {
             font-family: 'Mandali'
+        }
+        .logInHeader {
+            text-align: center;
+            color: gray;
+            font-family: Arial, Helvetica, sans-serif;
+            width: 100%;
+            padding-top: 25px;
+            margin-top: 0px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 10px;
         }
     </style>
 
@@ -71,70 +84,30 @@
                 <!-- First card: Holds the Word to Guess (blanks and guessed word). -->
                 <div class="card card-default">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-search-location"></i><strong> Search Pokes</strong></h3>
+                        <h3 class="card-title"><i class="fas fa-search-location"></i><strong> Login</strong></h3>
                     </div>
 
                     <div class="card-body">
 
-                        <form class="form">
-                            <div class="form-row">
-                              <div class="col">
-                                <input type="text" class="form-control" id="person" placeholder="search by name...">
-                              </div>
-                              <div class="col">
-                                <input type="text" class="form-control" id="title" placeholder="search by iv...">
-                              </div>
-                              <div class="col">
-                                <input type="text" class="form-control" id="startDate" placeholder="search by cp...">
-                              </div><br>
-                              <button type="submit" class="btn btn-outline-dark" id="submit"><i class="fas fa-search"></i> SUBMIT</button>
-                            </div>
-                        </form>
-                        
-                        
-                    </div>
-
-                </div>
-                <br>
-                <hr><br>
-                <!-- Results -->
-                <div class="card card-default">
-                    <div class="card-header">
-                        <h3 class="card-title"><strong><i class="fas fa-map-marker-alt"></i> Current Spawns</strong></h3>
-                    </div>
-
-                    <div class="card-body">
-                        <div id="container">
-                            <div id="results"></div>
-                            <table class="table">
-
-                                <div class="row"></div>
-
-                                <div class="col-lg-12"></div>
-
-                                <thead>
-                                    <tr style="width: 100%;">
-                                        <th scope="col"><h4 class="bold">IMAGE</h4></th>
-                                        <th scope="col"><h4 class="bold">NAME</h4></th>
-                                        <th scope="col"><h4 class="bold">IV</h4></th>
-                                        <th scope="col"><h4 class="bold">CP</h4></th>
-                                        <th scope="col"><h4 class="bold">Level</h4></th>
-                                        <th scope="col"><h4 class="bold">Dsp</h4></th>
-                                    </tr>
-                                </thead>
-
-                                <tbody id="tbody">
-
-
-                                </tbody>
-
-                            </table>
+                        <!-- Sign in Panel -->
+                    <div class="panel panel-default">
+                        <div class="container ">
+                        <div class="row">
+                        <h3 class="logInHeader">please log in with your google account</h2>
+                        <div class="signin logInHeader" id="firebaseui-auth-container"></div>
                         </div>
-
+                        </div>
+                    </div>
+                    <!-- Sign in Panel -->
+                        
+                        
                     </div>
 
                 </div>
                 <br><br>
+                <!-- Results -->
+                
+                
             </div>
 
         </div>
@@ -142,11 +115,7 @@
     </div>
 
     <!-- Adds a link to the JavaScript file. Loaded at the bottom so it waits for the HTML content to display first. If you put this at the top it will crash, because the HTML IDs won"t exist yet.-->
-    <script  type="text/javascript" src="assets/javascript/app.js"></script>
-
-    <audio id="opening-theme">
-            <source src="assets/audio/101-opening.mp3" type="audio/mp3">
-    </audio>
+    <script src="assets/javascript/signin.js"></script>
 
 
 
