@@ -36,12 +36,13 @@ $(document).ready(function () {
    
     
     
-    for (var i=0;i<50;i++) {
+    for (var i=0;i<5;i++) {
       thumb = GrabThumbNail(res[i]);
       GrabStats(res[i]);
       GrabCharInfo(statsArr);
       database.ref().push(character);
-
+      var despawn = GrabDespawn(res[i]).format("hh:mm");
+      console.log("Despawn Time: " + despawn);
     }
     
   })
@@ -115,4 +116,15 @@ function GrabStats(item) {
   console.log("Stats Array" + statsArr);
   return statsArr;
 }
-
+function GrabDespawn(item) {
+  statsArr = [];
+  stats = item.embeds[0].fields[1].name;
+  console.log(stats);
+  statsArr = stats.split(" ");
+  console.log("Stats Array" + statsArr);
+  var time = moment(statsArr[1] + statsArr[2], "h:mm");
+  console.log("time: " + time.format("hh:mm"));
+  time2 = time.add(-20, "m");
+  console.log("Time - 20 " + time2.format("hh:mm"));
+  return time;
+}
