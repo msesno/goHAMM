@@ -9,6 +9,20 @@ $(document).ready(function () {
 
   $("audio#opening-theme")[0].play();
 
+  
+  $('.play').click(function(){
+    var $this = $(this);
+    var id = $this.attr('id').replace(/btn/, '');
+    $this.toggleClass('active');
+    if($this.hasClass('active')){
+        $this.text('PAUSE'); 
+        $('audio#opening-theme')[0].play();        
+    } else {
+        $this.text('PLAY');
+        $('audio#opening-theme')[0].pause();
+    }
+  });
+
   var config = {
     apiKey: "AIzaSyAzJQYofNF8SOAjr-i9WiUnc_eC8sJU1Nc",
     authDomain: "pokedump-f9a36.firebaseapp.com",

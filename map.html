@@ -25,17 +25,47 @@
                 margin: 0;
                 padding: 0;
             }
+
+            #media {
+                z-index: 1;
+                margin: 20px 20px 20px 20px;
+                position: fixed;
+                float: right;
+            }
             
     </style>
 </head>
 <body>
-    <div id="pokemap"></div>
+    <div class="card" id="media" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Toggle Music</h5>
+          <hr>
+          <button class="play" id="btn1">PLAY</button>
+        </div>
+</div>
 
-    <audio id="bicylce-theme">
-            <source src="assets/audio/130-cycling.mp3" type="audio/mp3">
-    </audio>
+<div id="pokemap"></div>
+
+
+    
     
     <script>
+
+        $('audio#bicycle-theme')[0].play();
+
+                
+        $('.play').click(function(){
+        var $this = $(this);
+        var id = $this.attr('id').replace(/btn/, '');
+        $this.toggleClass('active');
+        if($this.hasClass('active')){
+            $this.text('PAUSE'); 
+            $('audio#bicycle-theme')[0].play();        
+        } else {
+            $this.text('PLAY');
+            $('audio#bicycle-theme')[0].pause();
+        }
+        });
         
 
         var map;
@@ -111,9 +141,9 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-WMeYwTn_iN3ao3YVhoLGE8dSD5-26j0&callback=initMap">
     </script>
 
-    <!-- <script>
-        $("audio#bicycle-theme")[0].play();
-    </script> -->
+    <audio id="bicylce-theme">
+        <source src="assets/audio/130-cycling.mp3" type="audio/mp3">
+    </audio>
 
 </body>
 </html>
