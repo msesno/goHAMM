@@ -3,7 +3,7 @@
 var res;
 var thumb;
 var character = {};
-var despawn;
+var despawn = 0;
 
 $(document).ready(function () {
 
@@ -31,7 +31,7 @@ $(document).ready(function () {
     storageBucket: "phila-pokedex.appspot.com",
     messagingSenderId: "678564572304"
   };
-  
+
   firebase.initializeApp(config);
 
   
