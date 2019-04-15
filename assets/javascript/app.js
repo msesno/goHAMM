@@ -2,6 +2,8 @@
 var res;
 var thumb;
 var character={};
+var despawn;
+
 $(document).ready(function () {
 
   var config = {
@@ -41,7 +43,7 @@ $(document).ready(function () {
       GrabStats(res[i]);
       GrabCharInfo(statsArr);
       database.ref().push(character);
-      var despawn = GrabDespawn(res[i]).format("hh:mm");
+      despawn = GrabDespawn(res[i]);
       console.log("Despawn Time: " + despawn);
     }
     
@@ -78,6 +80,8 @@ $(document).ready(function () {
       DisplayStat(charIV);
       DisplayStat(charCP);
       DisplayStat(charLvl);
+      DisplayStat(despawn);
+
       function AddImage() {
         var td = $("<td>");
         td.html(thumb);
@@ -122,9 +126,13 @@ function GrabDespawn(item) {
   console.log(stats);
   statsArr = stats.split(" ");
   console.log("Stats Array" + statsArr);
-  var time = moment(statsArr[1] + statsArr[2], "h:mm");
-  console.log("time: " + time.format("hh:mm"));
-  time2 = time.add(-20, "m");
-  console.log("Time - 20 " + time2.format("hh:mm"));
-  return time;
+  var time = moment(statsArr[1] + statsArr[2], "hh:mm a");
+  console.log("time: " + time.format("hh:mm a"));
+  time2 = time.add(-29, "m");
+  console.log("Time - 20 " + time2.format("hh:mm a"));
+
+  var timeLeft = moment().diff(time2, 'minutes');
+  console.log(timeLeft);
+
+  return timeLeft;
 }
