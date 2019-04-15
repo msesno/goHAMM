@@ -6,6 +6,8 @@ var despawn;
 
 $(document).ready(function () {
 
+  $("audio#opening-theme")[0].play();
+
   var config = {
     apiKey: "AIzaSyAzJQYofNF8SOAjr-i9WiUnc_eC8sJU1Nc",
     authDomain: "pokedump-f9a36.firebaseapp.com",

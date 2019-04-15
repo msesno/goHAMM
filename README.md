@@ -56,3 +56,19 @@ Rough Breakdown of Tasks
 
 - Outcome: 
   - Player or computer gets wins or losses according to choices/battles
+
+
+#MVP
+ 1. Who is your target audience?
+ pokemon go users
+  2. What is the problem that the product will address?
+ the app will display active pokemons in philly in row format, and remove after despawn. Player catches 2 pokes and then battle against 2 random computer choices.
+
+  3. What is the primary goal of the product?
+  the player and the comp chooses 2 spawns each and they store in the dom, when the player presses battle both teams battle according to object stats.
+
+  4. Identify and prioritize essential user stories (limit this to 3 or fewer)?
+  - as a user, i want to see the highest cp pokemons displayed in row format
+  - as a user, i want to see the highest iv pokemons displayed in row format
+  - as a user, i want to see the closest pokemons displayed in row format
+
