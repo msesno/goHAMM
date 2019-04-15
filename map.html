@@ -16,45 +16,33 @@
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
     <style>
-            /* Always set the map height explicitly to define the size of the div
-             * element that contains the map. */
             #pokemap {
-              height: 1000px;
-              width: 1000px;
-            }
-            /* Optional: Makes the sample page fill the window. */
-            html, body {
               height: 100%;
-              margin: 0;
-              padding: 0;
             }
+
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            
     </style>
 </head>
 <body>
     <div id="pokemap"></div>
+
+    <audio id="bicylce-theme">
+            <source src="assets/audio/130-cycling.mp3" type="audio/mp3">
+    </audio>
     
     <script>
+        
 
-        //////BEGIN TEST/////
-
-        var valueString = "[Google Maps](https://www.google.com/maps?q=40.7624565647865,-74.4222888268875)";
-        var valueSlice = valueString.slice(44, 78);
-        console.log(valueSlice);
-        var slice1 = valueSlice.slice(0, 16);
-        console.log(slice1);
-        var slice2 = valueSlice.slice(17,34);
-        console.log(slice2);
-
-        /////END TEST////
-
-        console.log("-------");
-
-        ////initialize map centered on Philly///
         var map;
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('pokemap'), {
-            zoom: 12,
+            zoom: 10,
             center: new google.maps.LatLng(39.952768, -75.163027),
             mapTypeId: 'roadmap'
             });
@@ -86,18 +74,45 @@
                 coords.push(coordLong);
                 coords.push(coordLat);
 
+                /* var pokeball = { 
+                    url: "assets/images/Pokeball.svg"
+                    size: new google.maps.Size(5,5),
+                    } */
+
                 var latLng = new google.maps.LatLng(coords[1],coords[0]);
                 var marker = new google.maps.Marker({
                         position: latLng,
-                        map: map
+                        map: map,
+                        //icon: pokeball//
                         });
+
+               
+                /* var pokeStats = '<div id="window">'+
+                                    '<div id="pokemon">' +
+                                        '<img src="response[i].embeds[0].thumbnail.url">'+
+                                    '</div>'+
+
+                                '</div>';
+                    
+                var infoWindow = new google.maps.InfoWindo({
+                    content: pokeStats
+                });
+                
+                marker.addListener("click", function () {
+                    infowindow.open(map, marker);
+                }) */ 
             }   
-      });
+        });
+
 
     </script>
 
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9_6CoYezDMp-DaySMAxJyWV8gzGSavRE&callback=initMap">
+    </script>
+
+    <script>
+        $("audio#bicycle-theme")[0].play();
     </script>
 
 </body>
