@@ -82,7 +82,7 @@ $(document).ready(function () {
         var charIV = statsArr[2];
         var charCP = statsArr[8];
         var charLvl = statsArr[5];
-        var dsTime;
+        var dsTime = despawn;
         var charThumb = imgSrc;
         console.log("charThumb: " + charThumb);
 
@@ -93,7 +93,8 @@ $(document).ready(function () {
           IV: charIV,
           CP: charCP,
           Lvl: charLvl,
-          Img: charThumb
+          Img: charThumb,
+          DSP: despawn
         }
         console.log(JSON.stringify(character));
 
@@ -249,13 +250,13 @@ function AddCharacterList(i, GrabCharInfo, database) {
             img.attr("src", item);
             return img;
           }
-          // function DisplayTime(item) {
-          //   var td = $("<td>");
-          //   var temp = moment(item).format("h:mm a");
-          //   td.text(temp);
-          //   tr.append(td);
-          //   $("tbody").append(tr);
-          // }
+          function DisplayTime(item) {
+            var td = $("<td>");
+            var temp = moment(item).format("h:mm a");
+            td.text(temp);
+            tr.append(td);
+            $("tbody").append(tr);
+          }
   }
 function Refresh() {
   $("tbody").empty();
@@ -264,13 +265,13 @@ function Refresh() {
     var tr = $("<tr>");
     thumb = GrabThumbNail(localDump[i].Img);
     AddImage(thumb);
-   
+    
 
     DisplayStat(localDump[i].name);
     DisplayStat(localDump[i].IV);
     DisplayStat(localDump[i].CP);
     DisplayStat(localDump[i].Lvl);
-     // DisplayTime(localDump[i].);
+    DisplayTime(localDump[i].DSP);
     console.log("Display Stat");
 
     function GrabThumbNail(item) {
@@ -295,12 +296,9 @@ function Refresh() {
     }
     function GrabDespawn(item) {
       statsArr = [];
-      // stats = item.embeds[0].fields[1].name;
-
-      console.log("stats despawn" + statsArr);
-     // console.log(stats);
+      console.log("Refresh GrabDespawn: " + item);
       statsArr = stats.split(" ");
-      // console.log("Stats Array" + statsArr);
+
       var time = moment(statsArr[1] + statsArr[2], "hh:mm a");
       console.log("time: " + time.format("hh:mm a"));
       console.log("Grab Despawn");
