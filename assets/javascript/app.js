@@ -9,7 +9,7 @@ $(document).ready(function () {
 
   $("audio#opening-theme")[0].play();
 
-  
+  // CREDIT: https://codepen.io/kalenenc/pen/MewMvX //
   $('.play').click(function(){
     var $this = $(this);
     var id = $this.attr('id').replace(/btn/, '');
