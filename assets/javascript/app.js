@@ -3,13 +3,18 @@
 var res;
 var thumb;
 var character = {};
-var despawn = 0;
+var despawn = moment();
+var localDump = [];
+var filteredSearch = [];
 
+var imgSrc;
 $(document).ready(function () {
 
-  $("audio#opening-theme")[0].play();
+  // $("audio#opening-theme")[0].play();
+  $("#submit").click(HandleSearchSubmit);
+  $("#btnRefresh").click(Refresh);
 
-  // CREDIT: https://codepen.io/kalenenc/pen/MewMvX //
+
   $('.play').click(function(){
     var $this = $(this);
     var id = $this.attr('id').replace(/btn/, '');
@@ -53,24 +58,7 @@ $(document).ready(function () {
     }
   }
 
-  // $.ajax(settings).done(function (response) {
-  //   console.log(response);
 
-  //   console.log(response[0].embeds[0].thumbnail.url);
-  //   var tempImg = response[0].embeds[0].thumbnail.url;
-  //   var tempChar = response[0].embeds[0].fields;
-  //   $("#imgPokemon").attr("src", tempImg);
-  //   console.log(tempChar);
-  //   for (var i = 0; i < 3; i++) {
-  //     console.log(tempChar[i].name);
-
-  //     var statsArr = tempChar[0].name.split(" ");
-
-  //     console.log("Stats Array: " + statsArr);
-  //     for (var i = 0; i < statsArr.length; i++) {
-  //       console.log("i: " + i + "    " + statsArr[i]);
-
-  //     }
 
 
       $.ajax(settings).then(function (response) {
@@ -80,12 +68,9 @@ $(document).ready(function () {
 
 
         for (var i = 0; i < 5; i++) {
-          thumb = GrabThumbNail(res[i]);
-          GrabStats(res[i]);
-          GrabCharInfo(statsArr);
-          database.ref().push(character);
-          despawn = GrabDespawn(res[i]);
-          console.log("Despawn Time: " + despawn);
+          console.log("i: " + i);
+          AddCharacterList(i, GrabCharInfo, database);
+         
         }
 
       });
@@ -97,7 +82,9 @@ $(document).ready(function () {
         var charIV = statsArr[2];
         var charCP = statsArr[8];
         var charLvl = statsArr[5];
-
+        var dsTime;
+        var charThumb = imgSrc;
+        console.log("charThumb: " + charThumb);
 
 
 
@@ -105,8 +92,10 @@ $(document).ready(function () {
           name: charName,
           IV: charIV,
           CP: charCP,
-          Lvl: charLvl
+          Lvl: charLvl,
+          Img: charThumb
         }
+        console.log(JSON.stringify(character));
 
         AddCharRow();
 
@@ -115,23 +104,33 @@ $(document).ready(function () {
           var tr = $("<tr>");
 
           AddImage();
-
+          console.log("Add imaged");
 
           DisplayStat(charName);
           DisplayStat(charIV);
           DisplayStat(charCP);
           DisplayStat(charLvl);
-          DisplayStat(despawn);
+          DisplayTime(despawn);
+          console.log("Display Stat");
 
           function AddImage() {
             var td = $("<td>");
             td.html(thumb);
             tr.append(td);
+            console.log("Add image 2");
           }
 
           function DisplayStat(item) {
             var td = $("<td>");
             td.text(item);
+            tr.append(td);
+            $("tbody").append(tr);
+          }
+
+          function DisplayTime(item) {
+            var td = $("<td>");
+            var temp = moment(item).format("h:mm a");
+            td.text(temp);
             tr.append(td);
             $("tbody").append(tr);
           }
@@ -145,9 +144,25 @@ $(document).ready(function () {
 
 
 
+function AddCharacterList(i, GrabCharInfo, database) {
+  console.log("Add Character List i: " + i);
+  thumb = GrabThumbNail(res[i]);
+  console.log("Add Character List i: " + i);
+  GrabStats(res[i]);
+  console.log("Add Character List i: " + i);
+  GrabCharInfo(statsArr);
+  console.log("Grab Char Info: " + i);
+  // database.ref().push(character);
+  // console.log("Firevase: " + i);
+  localDump.push(character);
+  // console.log("localDump " + i);
+  despawn = GrabDespawn(res[i]);
+  // console.log("Add Character List i: " + i);
+}
+
   function GrabThumbNail(item) {
-    console.log("Item: " + item);
-    var imgSrc = item.embeds[0].thumbnail.url;
+    // console.log("GrabThumbnail: " + item);
+    imgSrc = item.embeds[0].thumbnail.url;
     var img = $("<img>");
     img.attr("src", imgSrc);
     return img;
@@ -156,26 +171,154 @@ $(document).ready(function () {
   function GrabStats(item) {
     statsArr = [];
     stats = item.embeds[0].fields[0].name;
-    console.log(stats);
+    var dsTime = item.embeds[0].fields[1].name;
+    var dsArr = dsTime.split(" ");
+    dsTime = dsArr[1];
+    
+    console.log("DS Time: " + dsTime);
     statsArr = stats.split(" ");
-    console.log("Stats Array" + statsArr);
+   // console.log("Stats Array" + statsArr);
     return statsArr;
   }
   function GrabDespawn(item) {
     statsArr = [];
     stats = item.embeds[0].fields[1].name;
-    console.log(stats);
+    console.log("stats despawn" + statsArr);
+   // console.log(stats);
     statsArr = stats.split(" ");
-    console.log("Stats Array" + statsArr);
+    // console.log("Stats Array" + statsArr);
     var time = moment(statsArr[1] + statsArr[2], "hh:mm a");
     console.log("time: " + time.format("hh:mm a"));
-    time2 = time.add(-29, "m");
-    console.log("Time - 20 " + time2.format("hh:mm a"));
+    console.log("Grab Despawn");
+    
 
-    var timeLeft = moment().diff(time2, 'minutes');
-    console.log(timeLeft);
+    return time;
+  }
+ 
 
-    return timeLeft;
+
+  function HandleSearchSubmit(event) {
+      // console.log("Search Submit");
+      event.preventDefault();
+      // console.log("Inside Search");
+      // Search by name 
+      var name = $("#person").val().trim();
+      for(var i=0;i<localDump.length;i++) {
+        if(localDump[i].name == name) {
+          filteredSearch.push(localDump[i]);
+          
+        }
+      }
+      for (var i=0;i<filteredSearch.length;i++) {
+        console.log(filteredSearch[i]);
+        ShowFiltered(filteredSearch[i]);
+      }
+      
   }
 
+  function ShowFiltered(item) {
+    console.log("Show Filtered");
+    $("tbody").empty();
+    var tr = $("<tr>");
 
+          var tempImg = GrabThumbNail(item.Img);
+          AddImage(tempImg);
+
+          DisplayStat(item.name);
+          DisplayStat(item.IV);
+          DisplayStat(item.CP);
+          DisplayStat(item.Lvl);
+           DisplayTime(despawn);
+         
+          function AddImage(img) {
+            var td = $("<td>");
+            td.html(img);
+            tr.append(td);
+          }
+
+          function DisplayStat(item) {
+            var td = $("<td>");
+            td.text(item);
+            tr.append(td);
+            $("tbody").append(tr);
+          }
+          function GrabThumbNail(item) {
+            // console.log("Item: " + item);
+            var newImgSrc = item;
+            var img = $("<img>");
+            img.attr("src", item);
+            return img;
+          }
+          // function DisplayTime(item) {
+          //   var td = $("<td>");
+          //   var temp = moment(item).format("h:mm a");
+          //   td.text(temp);
+          //   tr.append(td);
+          //   $("tbody").append(tr);
+          // }
+  }
+function Refresh() {
+  $("tbody").empty();
+ 
+  for(var i=0;i<localDump.length;i++) {
+    var tr = $("<tr>");
+    thumb = GrabThumbNail(localDump[i].Img);
+    AddImage(thumb);
+   
+
+    DisplayStat(localDump[i].name);
+    DisplayStat(localDump[i].IV);
+    DisplayStat(localDump[i].CP);
+    DisplayStat(localDump[i].Lvl);
+     // DisplayTime(localDump[i].);
+    console.log("Display Stat");
+
+    function GrabThumbNail(item) {
+      // console.log("Item: " + item);
+      var newImgSrc = item;
+      var img = $("<img>");
+      img.attr("src", item);
+      return img;
+    }
+    function AddImage(thumb) {
+      var td = $("<td>");
+      td.html(thumb);
+      tr.append(td);
+      console.log("Add image 2");
+    }
+
+    function DisplayStat(item) {
+      var td = $("<td>");
+      td.text(item);
+      tr.append(td);
+      $("tbody").append(tr);
+    }
+    function GrabDespawn(item) {
+      statsArr = [];
+      // stats = item.embeds[0].fields[1].name;
+
+      console.log("stats despawn" + statsArr);
+     // console.log(stats);
+      statsArr = stats.split(" ");
+      // console.log("Stats Array" + statsArr);
+      var time = moment(statsArr[1] + statsArr[2], "hh:mm a");
+      console.log("time: " + time.format("hh:mm a"));
+      console.log("Grab Despawn");
+      
+  
+      return time;
+    }
+
+    function DisplayTime(item) {
+      var td = $("<td>");
+      var temp = moment(item).format("h:mm a");
+      console.log("Refresh Time: " + temp);
+      td.text(temp);
+      tr.append(td);
+      $("tbody").append(tr);
+    }
+
+
+  }
+
+};
