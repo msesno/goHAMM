@@ -12,7 +12,8 @@ $(document).ready(function () {
 
   // $("audio#opening-theme")[0].play();
   $("#submit").click(HandleSearchSubmit);
-  
+  $("#btnRefresh").click(Refresh);
+
   $('.play').click(function(){
     var $this = $(this);
     var id = $this.attr('id').replace(/btn/, '');
@@ -65,9 +66,10 @@ $(document).ready(function () {
 
 
 
-        for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < 100; i++) {
+          console.log("i: " + i);
           AddCharacterList(i, GrabCharInfo, database);
-        
+         
         }
 
       });
@@ -100,18 +102,20 @@ $(document).ready(function () {
           var tr = $("<tr>");
 
           AddImage();
-
+          console.log("Add imaged");
 
           DisplayStat(charName);
           DisplayStat(charIV);
           DisplayStat(charCP);
           DisplayStat(charLvl);
           DisplayTime(despawn);
+          console.log("Display Stat");
 
           function AddImage() {
             var td = $("<td>");
             td.html(thumb);
             tr.append(td);
+            console.log("Add image 2");
           }
 
           function DisplayStat(item) {
@@ -139,16 +143,23 @@ $(document).ready(function () {
 
 
 function AddCharacterList(i, GrabCharInfo, database) {
+  console.log("Add Character List i: " + i);
   thumb = GrabThumbNail(res[i]);
+  console.log("Add Character List i: " + i);
   GrabStats(res[i]);
+  console.log("Add Character List i: " + i);
   GrabCharInfo(statsArr);
-  database.ref().push(character);
+  console.log("Grab Char Info: " + i);
+  // database.ref().push(character);
+  console.log("Firevase: " + i);
   localDump.push(character);
+  console.log("localDump " + i);
   despawn = GrabDespawn(res[i]);
+  console.log("Add Character List i: " + i);
 }
 
   function GrabThumbNail(item) {
-    // console.log("Item: " + item);
+    console.log("GrabThumbnail: " + item);
     imgSrc = item.embeds[0].thumbnail.url;
     var img = $("<img>");
     img.attr("src", imgSrc);
@@ -166,11 +177,13 @@ function AddCharacterList(i, GrabCharInfo, database) {
   function GrabDespawn(item) {
     statsArr = [];
     stats = item.embeds[0].fields[1].name;
+    console.log("stats despawn" + statsArr);
    // console.log(stats);
     statsArr = stats.split(" ");
     // console.log("Stats Array" + statsArr);
     var time = moment(statsArr[1] + statsArr[2], "hh:mm a");
-    // console.log("time: " + time.format("hh:mm a"));
+    console.log("time: " + time.format("hh:mm a"));
+    console.log("Grab Despawn");
     
 
     return time;
@@ -179,6 +192,7 @@ function AddCharacterList(i, GrabCharInfo, database) {
 
 
   function HandleSearchSubmit(event) {
+      console.log("Search Submit");
       event.preventDefault();
       console.log("Inside Search");
       // Search by name 
@@ -197,6 +211,7 @@ function AddCharacterList(i, GrabCharInfo, database) {
   }
 
   function ShowFiltered(item) {
+    console.log("Show Filtered");
     $("tbody").empty();
     var tr = $("<tr>");
 
@@ -236,4 +251,50 @@ function AddCharacterList(i, GrabCharInfo, database) {
           //   $("tbody").append(tr);
           // }
   }
+function Refresh() {
+  $("tbody").empty();
+ 
+  for(var i=0;i<5;i++) {
+    var tr = $("<tr>");
+    thumb = GrabThumbNail(localDump[i].Img);
+    AddImage(thumb);
+   
 
+    DisplayStat(localDump[i].name);
+    DisplayStat(localDump[i].IV);
+    DisplayStat(localDump[i].CP);
+    DisplayStat(localDump[i].Lvl);
+     DisplayTime(despawn);
+    console.log("Display Stat");
+
+    function GrabThumbNail(item) {
+      // console.log("Item: " + item);
+      var newImgSrc = item;
+      var img = $("<img>");
+      img.attr("src", item);
+      return img;
+    }
+    function AddImage(thumb) {
+      var td = $("<td>");
+      td.html(thumb);
+      tr.append(td);
+      console.log("Add image 2");
+    }
+
+    function DisplayStat(item) {
+      var td = $("<td>");
+      td.text(item);
+      tr.append(td);
+      $("tbody").append(tr);
+    }
+
+    function DisplayTime(item) {
+      var td = $("<td>");
+      var temp = moment(item).format("h:mm a");
+      td.text(temp);
+      tr.append(td);
+      $("tbody").append(tr);
+    }
+  }
+
+};
