@@ -27,41 +27,11 @@
 
         for (var i = 0; i < response.length; i++) {
 
-            
-            /* var stringArray = [];
-            var nameString = response[i].embeds[0].fields[0].name;
-            stringArray = nameString.split(" ", 9);
-            stringArray.splice(6,1);
-            stringArray.splice(1,1);
-            var newArray = stringArray.splice(0,2);
-            var newArray2 = stringArray.splice(3,5);
-            var newCP = newArray2.join(": ");
-            var newSL = stringArray.join(" ");
-            var string2 = [];
-            string2 = newSL.split("↵");
-            
-            var bigArray = newArray.concat(string2);
-            
-            bigArray.push(newCP); */
-
-           /*  var pokemon = {
-                Name: bigArray[0],
-                Pic: thumbnail,
-                Coords: [],
-                IV: bigArray[1],
-                CP: bigArray[4],
-                Level: bigArray[3],
-                Despawn: bigArray[2]
-            }
-            console.log(pokemon, i); */
-
             var pokeball = { 
                 url: "assets/images/pokeball.svg",
                 } 
 
-          
-           
-            var coords = [];
+            let coords = [];
 
             var coordigin = response[i].embeds[0].fields[2].value;
             var coordString = coordigin.slice(44, 78);
@@ -70,8 +40,35 @@
             coords.push(coordLong);
             coords.push(coordLat);
 
-            let thumbnail = response[i].embeds[0].thumbnail.url;
+            
+            var array = [];
+            var array2 = [];
+            var bigArray = [];
 
+            var string1 = "**Wobbuffet** 4/10/8 (49%)↵Level 15 | CP 364 <:male:551982532619665415>";
+            var string2 = "<:check_yes:526152796131819520>: 1:34 PM (*27m 41s*)";
+
+            var array = string1.split(" ", 7);
+            array.splice(1,1);
+            array.splice(3,1);
+            var nameTemp = array.splice(0,1);
+            var nameNew = nameTemp.join();
+            var name = nameNew.substring(2,nameNew.length-2);
+
+            var newArray = array.splice(2,2);
+            var CP = newArray.join(" ");
+            var newString = array.join(" ");
+            bigArray = newString.split("↵");
+
+            var array2 = string2.split(" ");
+            array2.splice(0,3);
+            var despawn = array2.join(" ");
+        
+            bigArray.push(CP);
+            bigArray.push(name);
+            bigArray.push(despawn);
+            
+            let thumbnail = response[i].embeds[0].thumbnail.url;
 
             var latLng = new google.maps.LatLng(coords[1],coords[0]);
             var marker = new google.maps.Marker({
@@ -91,6 +88,14 @@
                         <div class="window">
                             <div class="thumbnail">
                                 <img class="pict" src=${thumbnail}>
+                            </div>
+
+                            <div class="poke-stats">
+                                <h5>${bigArray[3]}</h5>
+                                <p>${bigArray[1]}</p>
+                                <p>${bigArray[2]}</p>
+                                <p>${bigArray[0]}</p>
+                                <p>${bigArray[4]}</p>
                             </div>
 
                         </div>
