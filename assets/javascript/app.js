@@ -79,9 +79,13 @@ $(document).ready(function () {
 
       function GrabCharInfo(statsArr) {
         var charName = statsArr[0];
-        var charIV = statsArr[2];
-        var charCP = statsArr[8];
-        var charLvl = statsArr[5];
+        
+        var charIV = statsArr[1] + " " + statsArr[2];
+        var ivArr = statsArr[2].split("\n");
+        charIV = statsArr[1] + " " + ivArr[0];
+        
+        var charCP = statsArr[6];
+        var charLvl = statsArr[3];
         var dsTime = despawn;
         var charThumb = imgSrc;
         console.log("charThumb: " + charThumb);
@@ -146,13 +150,13 @@ $(document).ready(function () {
 
 
 function AddCharacterList(i, GrabCharInfo, database) {
-  console.log("Add Character List i: " + i);
+ // console.log("Add Character List i: " + i);
   thumb = GrabThumbNail(res[i]);
-  console.log("Add Character List i: " + i);
+  //console.log("Add Character List i: " + i);
   GrabStats(res[i]);
-  console.log("Add Character List i: " + i);
+  //console.log("Add Character List i: " + i);
   GrabCharInfo(statsArr);
-  console.log("Grab Char Info: " + i);
+  // console.log("Grab Char Info: " + i);
   // database.ref().push(character);
   // console.log("Firevase: " + i);
   localDump.push(character);
