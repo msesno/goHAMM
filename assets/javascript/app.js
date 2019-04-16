@@ -20,10 +20,10 @@ $(document).ready(function () {
     var id = $this.attr('id').replace(/btn/, '');
     $this.toggleClass('active');
     if($this.hasClass('active')){
-        $this.text('PAUSE'); 
+        $this.text('pause music'); 
         $('audio#opening-theme')[0].play();        
     } else {
-        $this.text('PLAY');
+        $this.text('play music');
         $('audio#opening-theme')[0].pause();
     }
   });
