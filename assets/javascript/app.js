@@ -209,9 +209,10 @@ function HandleSearchSubmit(event) {
   var name = $("#person").val().trim();
   var cp = $("#startDate").val().trim();
   var iv = $("#title").val().trim();
-
+ 
   for (var i = 0; i < localDump.length; i++) {
-    if (localDump[i].name == name || localDump[i].CP == cp) {
+
+    if (localDump[i].name == name || localDump[i].CP == cp || localDump[i].IV.indexOf(iv) > -1 ) {
       filteredSearch.push(localDump[i]);
 
     }
