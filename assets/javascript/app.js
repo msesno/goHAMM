@@ -78,8 +78,11 @@ $(document).ready(function () {
 
       function GrabCharInfo(statsArr) {
         var charName = statsArr[0];
-        var charIV = statsArr[1] + " " +statsArr[2];
-       
+        
+        var charIV = statsArr[1] + " " + statsArr[2];
+        var ivArr = statsArr[2].split("\n");
+        charIV = statsArr[1] + " " + ivArr[0];
+        
         var charCP = statsArr[6];
         var charLvl = statsArr[3];
         var dsTime = despawn;
