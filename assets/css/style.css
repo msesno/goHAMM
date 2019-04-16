@@ -40,6 +40,7 @@ p {
 
 }
 
+
 .window {
     display: flex;
     flex-direction: row;
@@ -54,4 +55,15 @@ p {
     font-size: 10px;
     margin: 0;
     padding: 0;
+
+#topSpace{
+    margin-top: 75px;
+}
+
+#navi {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+
 }
