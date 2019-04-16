@@ -91,11 +91,11 @@
                             </div>
 
                             <div class="poke-stats">
-                                <h5>${bigArray[3]}</h5>
-                                <p>${bigArray[1]}</p>
-                                <p>${bigArray[2]}</p>
-                                <p>${bigArray[0]}</p>
-                                <p>${bigArray[4]}</p>
+                                <h6 class="poke-name">${bigArray[3]}</h6>
+                                <p class="stat-line">${bigArray[1]}</p>
+                                <p class="stat-line">${bigArray[2]}</p>
+                                <p class="stat-line">${bigArray[0]}</p>
+                                <p class="stat-line">${bigArray[4]}</p>
                             </div>
 
                         </div>

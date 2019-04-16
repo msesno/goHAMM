@@ -39,3 +39,19 @@ p {
     align-content: center;
 
 }
+
+.window {
+    display: flex;
+    flex-direction: row;
+}
+
+.poke-name {
+    margin: 0;
+    padding: 0;
+}
+
+.stat-line {
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+}
