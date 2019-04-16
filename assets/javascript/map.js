@@ -40,13 +40,12 @@
             coords.push(coordLong);
             coords.push(coordLat);
 
-            
             var array = [];
             var array2 = [];
             var bigArray = [];
 
-            var string1 = "**Wobbuffet** 4/10/8 (49%)↵Level 15 | CP 364 <:male:551982532619665415>";
-            var string2 = "<:check_yes:526152796131819520>: 1:34 PM (*27m 41s*)";
+            var string1 = response[i].embeds[0].fields[0].name;
+            var string2 = response[i].embeds[0].fields[1].name;
 
             var array = string1.split(" ", 7);
             array.splice(1,1);
@@ -58,8 +57,9 @@
             var newArray = array.splice(2,2);
             var CP = newArray.join(" ");
             var newString = array.join(" ");
-            bigArray = newString.split("↵");
-
+            bigArray = newString.split("\n");
+            console.log(bigArray);
+            
             var array2 = string2.split(" ");
             array2.splice(0,3);
             var despawn = array2.join(" ");
@@ -67,7 +67,9 @@
             bigArray.push(CP);
             bigArray.push(name);
             bigArray.push(despawn);
-            
+
+            console.log(bigArray);
+
             let thumbnail = response[i].embeds[0].thumbnail.url;
 
             var latLng = new google.maps.LatLng(coords[1],coords[0]);
@@ -93,8 +95,8 @@
                             <div class="poke-stats">
                                 <h6 class="poke-name">${bigArray[3]}</h6>
                                 <p class="stat-line">${bigArray[1]}</p>
-                                <p class="stat-line">${bigArray[2]}</p>
                                 <p class="stat-line">${bigArray[0]}</p>
+                                <p class="stat-line">${bigArray[2]}</p>
                                 <p class="stat-line">${bigArray[4]}</p>
                             </div>
 
