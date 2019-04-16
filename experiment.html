@@ -7,6 +7,38 @@
     <body>
         <script>
 
+            /////   0RIGINAL STRING PARSE FOR REFERENCE ///
+
+             /* var stringArray = [];
+            var nameString = response[i].embeds[0].fields[0].name;
+            stringArray = nameString.split(" ", 9);
+            stringArray.splice(6,1);
+            stringArray.splice(1,1);
+            var newArray = stringArray.splice(0,2);
+            var newArray2 = stringArray.splice(3,5);
+            var newCP = newArray2.join(": ");
+            var newSL = stringArray.join(" ");
+            var string2 = [];
+            string2 = newSL.split("↵");
+            
+            var bigArray = newArray.concat(string2);
+            
+            bigArray.push(newCP); */
+
+           /*  var pokemon = {
+                Name: bigArray[0],
+                Pic: thumbnail,
+                Coords: [],
+                IV: bigArray[1],
+                CP: bigArray[4],
+                Level: bigArray[3],
+                Despawn: bigArray[2]
+            }
+            console.log(pokemon, i); */
+
+
+            //////////-------------------/////////////////
+
             var array = [];
             var array2 = [];
             var bigArray = [];
@@ -20,9 +52,13 @@
             console.log("array: " + array);
             array.splice(3,1);
             console.log("array: " + array);
-            var name = array.splice(0,1);
-            console.log("array: " + array);
+            var nameTemp = array.splice(0,1);
+            console.log("name: " + nameTemp);
+            var nameNew = nameTemp.join();
+            var name = nameNew.substring(2,nameNew.length-2);
             console.log("name: " + name);
+
+           
             var newArray = array.splice(2,2);
             console.log("newArray: " + newArray);
             var CP = newArray.join(" ");
@@ -63,20 +99,23 @@
             var array = string1.split(" ", 7);
             array.splice(1,1);
             array.splice(3,1);
-            var name = array.splice(0,1);
+            var nameTemp = array.splice(0,1);
+            var nameNew = nameTemp.join();
+            var name = nameNew.substring(2,nameNew.length-2);
+
             var newArray = array.splice(2,2);
             var CP = newArray.join(" ");
             var newString = array.join(" ");
             bigArray = newString.split("↵");
-            
+
             var array2 = string2.split(" ");
             array2.splice(0,3);
             var despawn = array2.join(" ");
-
+        
             bigArray.push(CP);
             bigArray.push(name);
             bigArray.push(despawn);
-
+            
         </script>
     </body>
 </html>
