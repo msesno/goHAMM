@@ -17,45 +17,38 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="assets/css/style.css" />
 
-    
     <style>
-        h1 {
-            font-family: 'Slackey';
-            font-weight: bold;
-            font-size: 3em;
+        #pokemap {
+          height: 300px;
         }
 
-        .title {
-            font-size: 22px;
-            font-weight: bold;
-        }
-        h3{
-            padding-top: 10px;
-            font-family: 'Slackey'
-        }
-        h4{
-            font-family: 'Mandali';
-            font-size: 16px;
-        }
-        .bold {
-            font-weight: bold;
-        }
-        p {
-            font-family: 'Mandali'
-        }
-    </style>
 
+        #media {
+            z-index: 1;
+            margin: 100px 20px 20px 10px;
+            position: fixed;
+            float: right;
+        }
+        
+</style>
 
 </head>
 
 <body>
 
+    <nav class="navbar navbar-dark bg-dark" id="navi">
+        <button class="btn btn-outline-info my-sm-0" id="btnRefresh" type="submit">refresh data</button>
+        <button class="btn btn-outline-info my-2 my-sm-0 play" id="btn1" type="submit">play music</button>    
+    </nav>
+
+
     <!-- Bootstrap Container will hold everything. -->
     <div class="container">
 
         <!-- Jumbotron holds the title section. -->
-        <div class='jumbotron'>
+        <div class='jumbotron' id="topSpace">
             <div class='container'>
                 <h1 class="text-center"><img src="assets/images/logo.svg" alt="logo" class="fa-spin"> Philly Pokedex</h1>
                 <hr>
@@ -68,7 +61,27 @@
         <div class="row">
             <div class="col-lg-12">
 
-                <!-- First card: Holds the Word to Guess (blanks and guessed word). -->
+
+                <!-- start map card -->
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-search-location"></i><strong> Map</strong></h3>
+                    </div>
+
+                    <div class="card-body" id="pokemap">
+
+                        <!-- temp map holder -->
+                    
+                        
+                    </div>
+
+                </div>
+                <!-- end map card -->
+
+                <br><hr><br>
+
+                
+                <!-- Search/sort card -->
                 <div class="card card-default">
                     <div class="card-header">
                         <h3 class="card-title"><i class="fas fa-search-location"></i><strong> Search Pokes</strong></h3>
@@ -95,9 +108,12 @@
                     </div>
 
                 </div>
+                <!-- end search card -->
                 <br>
                 <hr><br>
-                <!-- Results -->
+                
+
+                <!-- start spawn table posts card -->
                 <div class="card card-default">
                     <div class="card-header">
                         <h3 class="card-title"><strong><i class="fas fa-map-marker-alt"></i> Current Spawns</strong></h3>
@@ -129,13 +145,14 @@
                                 </tbody>
 
                             </table>
-                            <button type="button" id="btnRefresh" >Refresh</button>
                         </div>
 
                     </div>
 
                 </div>
                 <br><br>
+                <!-- end spawn table card -->
+
             </div>
 
         </div>
@@ -144,11 +161,11 @@
 
     <!-- Adds a link to the JavaScript file. Loaded at the bottom so it waits for the HTML content to display first. If you put this at the top it will crash, because the HTML IDs won"t exist yet.-->
     <script  type="text/javascript" src="assets/javascript/app.js"></script>
-
-    <audio id="opening-theme"><source src="assets/audio/101-opening.mp3" type="audio/mp3"></audio>
+    <script type="text/javascript" src="assets/javascript/map.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-WMeYwTn_iN3ao3YVhoLGE8dSD5-26j0&callback=initMap"></script>
-
-
+    <audio id="bicycle-theme"><source src="assets/audio/130-cycling.mp3" type="audio/mp3"></audio>
+    <audio id="opening-theme"><source src="assets/audio/101-opening.mp3" type="audio/mp3"></audio>
+    
 
 </body>
 
