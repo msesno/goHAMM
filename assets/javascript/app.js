@@ -88,7 +88,7 @@ $(document).ready(function () {
     var charLvl = statsArr[3];
     var dsTime = despawn;
     var charThumb = imgSrc;
-    
+
 
 
 
@@ -100,29 +100,29 @@ $(document).ready(function () {
       Img: charThumb,
       DSP: despawn
     }
-  
+
 
     AddCharRow();
 
     function AddCharRow() {
-     
+
       var tr = $("<tr>");
 
       AddImage();
-      
+
 
       DisplayStat(charName);
       DisplayStat(charIV);
       DisplayStat(charCP);
       DisplayStat(charLvl);
       DisplayTime(despawn);
-      
+
 
       function AddImage() {
         var td = $("<td>");
         td.html(thumb);
         tr.append(td);
-    
+
       }
 
       function DisplayStat(item) {
@@ -213,12 +213,12 @@ function HandleSearchSubmit(event) {
   for (var i = 0; i < localDump.length; i++) {
     if (localDump[i].name == name || localDump[i].CP == cp) {
       filteredSearch.push(localDump[i]);
-     
+
     }
   }
   for (var i = 0; i < filteredSearch.length; i++) {
 
-    
+
     ShowFiltered(filteredSearch[i]);
   }
 
@@ -267,7 +267,7 @@ function ShowFiltered(item) {
 }
 function Refresh() {
   $("tbody").empty();
-
+  filteredSearch = [];
   for (var i = 0; i < localDump.length; i++) {
     var tr = $("<tr>");
     thumb = GrabThumbNail(localDump[i].Img);
