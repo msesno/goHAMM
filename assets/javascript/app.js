@@ -66,7 +66,7 @@ $(document).ready(function () {
 
 
 
-        for (var i = 0; i < 100; i++) {
+        for (var i = 0; i < 5; i++) {
           console.log("i: " + i);
           AddCharacterList(i, GrabCharInfo, database);
          
@@ -81,6 +81,7 @@ $(document).ready(function () {
         var charIV = statsArr[2];
         var charCP = statsArr[8];
         var charLvl = statsArr[5];
+        var dsTime;
         var charThumb = imgSrc;
         console.log("charThumb: " + charThumb);
 
@@ -151,15 +152,15 @@ function AddCharacterList(i, GrabCharInfo, database) {
   GrabCharInfo(statsArr);
   console.log("Grab Char Info: " + i);
   // database.ref().push(character);
-  console.log("Firevase: " + i);
+  // console.log("Firevase: " + i);
   localDump.push(character);
-  console.log("localDump " + i);
+  // console.log("localDump " + i);
   despawn = GrabDespawn(res[i]);
-  console.log("Add Character List i: " + i);
+  // console.log("Add Character List i: " + i);
 }
 
   function GrabThumbNail(item) {
-    console.log("GrabThumbnail: " + item);
+    // console.log("GrabThumbnail: " + item);
     imgSrc = item.embeds[0].thumbnail.url;
     var img = $("<img>");
     img.attr("src", imgSrc);
@@ -169,7 +170,11 @@ function AddCharacterList(i, GrabCharInfo, database) {
   function GrabStats(item) {
     statsArr = [];
     stats = item.embeds[0].fields[0].name;
-   // console.log(stats);
+    var dsTime = item.embeds[0].fields[1].name;
+    var dsArr = dsTime.split(" ");
+    dsTime = dsArr[1];
+    
+    console.log("DS Time: " + dsTime);
     statsArr = stats.split(" ");
    // console.log("Stats Array" + statsArr);
     return statsArr;
@@ -192,13 +197,13 @@ function AddCharacterList(i, GrabCharInfo, database) {
 
 
   function HandleSearchSubmit(event) {
-      console.log("Search Submit");
+      // console.log("Search Submit");
       event.preventDefault();
-      console.log("Inside Search");
+      // console.log("Inside Search");
       // Search by name 
       var name = $("#person").val().trim();
       for(var i=0;i<localDump.length;i++) {
-        if(localDump[i].name === name) {
+        if(localDump[i].name == name) {
           filteredSearch.push(localDump[i]);
           
         }
@@ -222,7 +227,7 @@ function AddCharacterList(i, GrabCharInfo, database) {
           DisplayStat(item.IV);
           DisplayStat(item.CP);
           DisplayStat(item.Lvl);
-          // DisplayTime(despawn);
+           DisplayTime(despawn);
          
           function AddImage(img) {
             var td = $("<td>");
@@ -254,7 +259,7 @@ function AddCharacterList(i, GrabCharInfo, database) {
 function Refresh() {
   $("tbody").empty();
  
-  for(var i=0;i<5;i++) {
+  for(var i=0;i<localDump.length;i++) {
     var tr = $("<tr>");
     thumb = GrabThumbNail(localDump[i].Img);
     AddImage(thumb);
@@ -264,7 +269,7 @@ function Refresh() {
     DisplayStat(localDump[i].IV);
     DisplayStat(localDump[i].CP);
     DisplayStat(localDump[i].Lvl);
-     DisplayTime(despawn);
+     // DisplayTime(localDump[i].);
     console.log("Display Stat");
 
     function GrabThumbNail(item) {
@@ -287,14 +292,32 @@ function Refresh() {
       tr.append(td);
       $("tbody").append(tr);
     }
+    function GrabDespawn(item) {
+      statsArr = [];
+      // stats = item.embeds[0].fields[1].name;
+
+      console.log("stats despawn" + statsArr);
+     // console.log(stats);
+      statsArr = stats.split(" ");
+      // console.log("Stats Array" + statsArr);
+      var time = moment(statsArr[1] + statsArr[2], "hh:mm a");
+      console.log("time: " + time.format("hh:mm a"));
+      console.log("Grab Despawn");
+      
+  
+      return time;
+    }
 
     function DisplayTime(item) {
       var td = $("<td>");
       var temp = moment(item).format("h:mm a");
+      console.log("Refresh Time: " + temp);
       td.text(temp);
       tr.append(td);
       $("tbody").append(tr);
     }
+
+
   }
 
 };
