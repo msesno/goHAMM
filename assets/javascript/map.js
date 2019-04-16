@@ -1,24 +1,5 @@
 // $(document).ready(function (){
 
-    $(document).on("load", function (){
-        $("audio#bicycle-theme")[0].play();
-    });
-
-    // CREDIT: https://codepen.io/kalenenc/pen/MewMvX //
-    $('.play').click(function(){
-    var $this = $(this);
-    var id = $this.attr('id').replace(/btn/, '');
-    $this.toggleClass('active');
-    if($this.hasClass('active')){
-        $this.text('PAUSE'); 
-        $('audio#bicycle-theme')[0].play();        
-    } else {
-        $this.text('PLAY');
-        $('audio#bicycle-theme')[0].pause();
-    }
-    });
-     
-
     var map;
 
     function initMap() {
