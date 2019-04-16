@@ -88,7 +88,7 @@ $(document).ready(function () {
     var charLvl = statsArr[3];
     var dsTime = despawn;
     var charThumb = imgSrc;
-    // console.log("charThumb: " + charThumb);
+    
 
 
 
@@ -100,29 +100,29 @@ $(document).ready(function () {
       Img: charThumb,
       DSP: despawn
     }
-    // console.log(JSON.stringify(character));
+  
 
     AddCharRow();
 
     function AddCharRow() {
-      // console.log("AddCharRow:");
+     
       var tr = $("<tr>");
 
       AddImage();
-      // console.log("Add imaged");
+      
 
       DisplayStat(charName);
       DisplayStat(charIV);
       DisplayStat(charCP);
       DisplayStat(charLvl);
       DisplayTime(despawn);
-      // console.log("Display Stat");
+      
 
       function AddImage() {
         var td = $("<td>");
         td.html(thumb);
         tr.append(td);
-        // console.log("Add image 2");
+    
       }
 
       function DisplayStat(item) {
@@ -213,19 +213,19 @@ function HandleSearchSubmit(event) {
   for (var i = 0; i < localDump.length; i++) {
     if (localDump[i].name == name || localDump[i].CP == cp) {
       filteredSearch.push(localDump[i]);
-      //console.log("Filtered Search: " + JSON.stringify(filteredSearch));
+     
     }
   }
   for (var i = 0; i < filteredSearch.length; i++) {
-    console.log("Filtered Counter: " + i);
-    // console.log(filteredSearch[i]);
+
+    
     ShowFiltered(filteredSearch[i]);
   }
-  console.log("Filtered List: " + filteredSearch.length);
+
 }
 
 function ShowFiltered(item) {
-  console.log("Show Filtered: " + JSON.stringify(item));
+  console.log("DSP: " + moment(item.DSP).format("h:mm a"));
 
   var tr = $("<tr>");
 
@@ -236,7 +236,7 @@ function ShowFiltered(item) {
   DisplayStat(item.IV);
   DisplayStat(item.CP);
   DisplayStat(item.Lvl);
-  DisplayTime(despawn);
+  DisplayTime(item.DSP);
 
   function AddImage(img) {
     var td = $("<td>");
