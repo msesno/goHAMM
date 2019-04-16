@@ -14,6 +14,7 @@ $(document).ready(function () {
   $("#submit").click(HandleSearchSubmit);
   $("#btnRefresh").click(Refresh);
 
+
   $('.play').click(function(){
     var $this = $(this);
     var id = $this.attr('id').replace(/btn/, '');
