@@ -40,7 +40,6 @@
             coords.push(coordLong);
             coords.push(coordLat);
 
-            
             var array = [];
             var array2 = [];
             var bigArray = [];
@@ -63,11 +62,36 @@
             var array2 = string2.split(" ");
             array2.splice(0,3);
             var despawn = array2.join(" ");
+
+            let array = [];
+            let array2 = [];
+            let bigArray = [];
+
+            let string1 = response[i].embeds[0].fields[0].name;
+            let string2 = response[i].embeds[0].fields[1].name;
+
+            array = string1.split(" ", 7);
+            array.splice(1,1);
+            array.splice(3,1);
+            let nameTemp = array.splice(0,1);
+            let nameNew = nameTemp.join();
+            let name = nameNew.substring(2,nameNew.length-2);
+
+            let newArray = array.splice(2,2);
+            let CP = newArray.join(" ");
+            let newString = array.join(" ");
+            bigArray = newString.split("\n");
+            console.log(bigArray);
+            
+            array2 = string2.split(" ");
+            array2.splice(0,3);
+            let despawn = array2.join(" ");
+
         
             bigArray.push(CP);
             bigArray.push(name);
             bigArray.push(despawn);
-            
+
             let thumbnail = response[i].embeds[0].thumbnail.url;
 
             var latLng = new google.maps.LatLng(coords[1],coords[0]);
@@ -91,11 +115,19 @@
                             </div>
 
                             <div class="poke-stats">
+
                                 <h5>${bigArray[3]}</h5>
                                 <p>${bigArray[1]}</p>
                                 <p>${bigArray[2]}</p>
                                 <p>${bigArray[0]}</p>
                                 <p>${bigArray[4]}</p>
+
+                                <h6 class="poke-name">${bigArray[3]}</h6>
+                                <p class="stat-line">${bigArray[1]}</p>
+                                <p class="stat-line">${bigArray[0]}</p>
+                                <p class="stat-line">${bigArray[2]}</p>
+                                <p class="stat-line">${bigArray[4]}</p>
+
                             </div>
 
                         </div>
