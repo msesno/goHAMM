@@ -28,7 +28,7 @@
         for (var i = 0; i < response.length; i++) {
 
             var pokeball = { 
-                url: "assets/images/pokeball.svg",
+                url: "assets/images/Pokeball.svg",
                 } 
 
             let coords = [];
