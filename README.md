@@ -16,6 +16,7 @@ Outcome:
 This app will use:
 discord api @ https://discordapp.com/developers/docs/resources/webhook <br>
 rapidAPI for pokemon go @ https://rapidapi.com/brianiswu/api/pokemon-go1/details <br>
+- google maps api https://developers.google.com/maps/documentation/
 
 # Members on Github
 Limbach17 <br>
@@ -72,3 +73,22 @@ Rough Breakdown of Tasks
   - as a user, i want to see the highest iv pokemons displayed in row format
   - as a user, i want to see the closest pokemons displayed in row format
 
+#Presentation
+We wanted to create an app that displays active pokemons in the city of philadelphia in a row or map format, and removed after despawn. The pokemon object stats will be displayed in row format, and also as a pin on map section. We used the discord Api to get messages from discord channel, store in browser, and output image, stats and despawn time. We used firebase to store user logins for redirect to home.html page. The google maps Api was implemented to display the pokemon location on a map according to geo coordinates. Lastly a button to toggle theme music will be available in the nav bar, top right, and a refresh data button top left.
+
+#spawn table
+On page load, js uses the discord api and pulls the last 100 messgaes from channel id, then stores in browser cache. The spawn table populates data from cache and displays time left to despawn, image, name, iv, cp, and level. Page refresh gets last messages post from discord channel.
+
+
+#search
+The search function will find users input for name, iv, or cp. It only will search the total spawns in browser cache on page load. Page refresh gets last messages post from discord channel.
+
+#map
+The map section places pokemon pin using geo coordinates from the browser cache on to map leaflet and the data refreshes with new coordinates. Page refresh gets last messages post from discord channel.
+
+
+#signin
+Sign in page removes protected data and authenticates from google key. Firebase then stores the users login info to regulate data rights management.
+
+#notes
+Original concept we wanted to incorpate a simple battle rpg game, but instead focused on discord and google map Api's
