@@ -41,6 +41,7 @@ p {
 }
 
 
+
 .window {
     display: flex;
     flex-direction: row;
@@ -65,5 +66,4 @@ p {
     top: 0;
     width: 100%;
     z-index: 2;
-
 }
