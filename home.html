@@ -31,6 +31,10 @@
             position: fixed;
             float: right;
         }
+        .space {
+            margin-right: 5px;
+            margin-left: 5px;
+        }
         
 </style>
 
@@ -39,7 +43,7 @@
 <body>
 
     <nav class="navbar navbar-dark bg-dark" id="navi">
-        <button class="btn btn-outline-info my-sm-0" id="btnRefresh" type="submit"><i class="fas fa-sync-alt"></i> refresh data</button>
+            <img src="assets/images/logo2.svg" alt="logo" class="fa-white" style="font-size:40px;color:white;">
         <button class="btn btn-outline-info my-2 my-sm-0 play" id="btn1" type="submit"> play music <i class="fas fa-music"></i></button>    
     </nav>
 
@@ -100,7 +104,8 @@
                               <div class="col">
                                 <input type="text" class="form-control" id="startDate" placeholder="search by cp...">
                               </div><br>
-                              <button type="submit" class="btn btn-outline-dark" id="submit"><i class="fas fa-search"></i> SUBMIT</button>
+                              <button type="submit" class="btn btn-outline-dark" id="submit"><i class="fas fa-search"></i> search</button>
+                              <button class="btn btn-outline-info my-sm-0 space" id="btnRefresh" type="submit"><i class="fas fa-sync-alt"></i> refresh data</button>
                             </div>
                         </form>
                         
