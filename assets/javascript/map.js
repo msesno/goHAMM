@@ -4,7 +4,7 @@
 
     function initMap() {
         map = new google.maps.Map(document.getElementById('pokemap'), {
-        zoom: 10,
+        zoom: 12,
         center: new google.maps.LatLng(39.952768, -75.163027),
         mapTypeId: 'roadmap'
         });
