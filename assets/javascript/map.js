@@ -56,7 +56,7 @@
             console.log(pokemon, i); */
 
             var pokeball = { 
-                url: "assets/images/pokeball.svg",
+                url: "assets/images/Pokeball.svg",
                 } 
 
           
