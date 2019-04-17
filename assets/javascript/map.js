@@ -40,29 +40,6 @@
             coords.push(coordLong);
             coords.push(coordLat);
 
-            var array = [];
-            var array2 = [];
-            var bigArray = [];
-
-            var string1 = "**Wobbuffet** 4/10/8 (49%)↵Level 15 | CP 364 <:male:551982532619665415>";
-            var string2 = "<:check_yes:526152796131819520>: 1:34 PM (*27m 41s*)";
-
-            var array = string1.split(" ", 7);
-            array.splice(1,1);
-            array.splice(3,1);
-            var nameTemp = array.splice(0,1);
-            var nameNew = nameTemp.join();
-            var name = nameNew.substring(2,nameNew.length-2);
-
-            var newArray = array.splice(2,2);
-            var CP = newArray.join(" ");
-            var newString = array.join(" ");
-            bigArray = newString.split("↵");
-
-            var array2 = string2.split(" ");
-            array2.splice(0,3);
-            var despawn = array2.join(" ");
-
             let array = [];
             let array2 = [];
             let bigArray = [];
@@ -81,12 +58,10 @@
             let CP = newArray.join(" ");
             let newString = array.join(" ");
             bigArray = newString.split("\n");
-            console.log(bigArray);
             
             array2 = string2.split(" ");
             array2.splice(0,3);
             let despawn = array2.join(" ");
-
         
             bigArray.push(CP);
             bigArray.push(name);
@@ -115,19 +90,11 @@
                             </div>
 
                             <div class="poke-stats">
-
-                                <h5>${bigArray[3]}</h5>
-                                <p>${bigArray[1]}</p>
-                                <p>${bigArray[2]}</p>
-                                <p>${bigArray[0]}</p>
-                                <p>${bigArray[4]}</p>
-
                                 <h6 class="poke-name">${bigArray[3]}</h6>
                                 <p class="stat-line">${bigArray[1]}</p>
                                 <p class="stat-line">${bigArray[0]}</p>
                                 <p class="stat-line">${bigArray[2]}</p>
                                 <p class="stat-line">${bigArray[4]}</p>
-
                             </div>
 
                         </div>
