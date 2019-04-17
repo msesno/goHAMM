@@ -27,41 +27,11 @@
 
         for (var i = 0; i < response.length; i++) {
 
-            
-            /* var stringArray = [];
-            var nameString = response[i].embeds[0].fields[0].name;
-            stringArray = nameString.split(" ", 9);
-            stringArray.splice(6,1);
-            stringArray.splice(1,1);
-            var newArray = stringArray.splice(0,2);
-            var newArray2 = stringArray.splice(3,5);
-            var newCP = newArray2.join(": ");
-            var newSL = stringArray.join(" ");
-            var string2 = [];
-            string2 = newSL.split("↵");
-            
-            var bigArray = newArray.concat(string2);
-            
-            bigArray.push(newCP); */
-
-           /*  var pokemon = {
-                Name: bigArray[0],
-                Pic: thumbnail,
-                Coords: [],
-                IV: bigArray[1],
-                CP: bigArray[4],
-                Level: bigArray[3],
-                Despawn: bigArray[2]
-            }
-            console.log(pokemon, i); */
-
             var pokeball = { 
                 url: "assets/images/pokeball.svg",
                 } 
 
-          
-           
-            var coords = [];
+            let coords = [];
 
             var coordigin = response[i].embeds[0].fields[2].value;
             var coordString = coordigin.slice(44, 78);
@@ -70,8 +40,34 @@
             coords.push(coordLong);
             coords.push(coordLat);
 
-            let thumbnail = response[i].embeds[0].thumbnail.url;
+            let array = [];
+            let array2 = [];
+            let bigArray = [];
 
+            let string1 = response[i].embeds[0].fields[0].name;
+            let string2 = response[i].embeds[0].fields[1].name;
+
+            array = string1.split(" ", 7);
+            array.splice(1,1);
+            array.splice(3,1);
+            let nameTemp = array.splice(0,1);
+            let nameNew = nameTemp.join();
+            let name = nameNew.substring(2,nameNew.length-2);
+
+            let newArray = array.splice(2,2);
+            let CP = newArray.join(" ");
+            let newString = array.join(" ");
+            bigArray = newString.split("\n");
+            
+            array2 = string2.split(" ");
+            array2.splice(0,3);
+            let despawn = array2.join(" ");
+        
+            bigArray.push(CP);
+            bigArray.push(name);
+            bigArray.push(despawn);
+
+            let thumbnail = response[i].embeds[0].thumbnail.url;
 
             var latLng = new google.maps.LatLng(coords[1],coords[0]);
             var marker = new google.maps.Marker({
@@ -91,6 +87,14 @@
                         <div class="window">
                             <div class="thumbnail">
                                 <img class="pict" src=${thumbnail}>
+                            </div>
+
+                            <div class="poke-stats">
+                                <h6 class="poke-name">${bigArray[3]}</h6>
+                                <p class="stat-line">${bigArray[1]}</p>
+                                <p class="stat-line">${bigArray[0]}</p>
+                                <p class="stat-line">${bigArray[2]}</p>
+                                <p class="stat-line">${bigArray[4]}</p>
                             </div>
 
                         </div>
