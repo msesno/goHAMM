@@ -40,23 +40,6 @@ p {
 
 }
 
-
-
-.window {
-    display: flex;
-    flex-direction: row;
-}
-
-.poke-name {
-    margin: 0;
-    padding: 0;
-}
-
-.stat-line {
-    font-size: 10px;
-    margin: 0;
-    padding: 0;
-
 #topSpace{
     margin-top: 75px;
 }
