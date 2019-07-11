@@ -1,0 +1,18 @@
+### Schema
+
+CREATE DATABASE poke_db;
+USE poke_db;
+DROP DATABASE IF EXISTS poke_db;
+
+CREATE TABLE pokemon
+(
+	id int NOT NULL AUTO_INCREMENT,
+	pokeName varchar(255) NOT NULL,
+	iv NUMBER NOT NULL,
+	cp NUMBER NOT NULL,
+	Lvl INT NOT NULL,
+	Img varchar(150) NOT NULL,
+	DSP DATETIME NOT NULL,
+	PRIMARY KEY (id)
+);
+
